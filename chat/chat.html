@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <link href="./style.css" type="text/css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="app">
+    </div>
+
+    <script src="//unpkg.com/twitch-js@>2.0.0-beta.31"></script>
+    <script type="module" src="js/App.js"></script>
+    <script>
+      const getBadges = (() => {
+        let globalBadges = null
+
+        return () => {
+          if (globalBadges === null) {
+            globalBadges = fetch("https://badges.twitch.tv/v1/badges/global/display")
+              .then(r => r.json())
+          }
+
+          return globalBadges
+        }
+      })()
+
+      const getBadgesMarkup = async badges =>
+        Promise.all(
+          Object.entries(badges)
+            .map(async ([key, value]) => {
+              const { badge_sets: badgesProms } = await getBadges()
+              const url = badgesProms[key].versions[parseInt(value, 10)].image_url_1x
+              return `<img src="${url}"/>`
+            })
+        )
+
+      const createSpanFromEvent = event => {
+        const span = document.createElement("span")
+
+        let lastEnd = 0
+
+        for (const emote of event.tags.emotes) {
+          const textBefore = event.message.slice(lastEnd, emote.start)
+
+          const img = document.createElement("img")
+          img.src = `https://static-cdn.jtvnw.net/emoticons/v1/${emote.id}/1.0`
+
+          span.appendChild(document.createTextNode(textBefore))
+          span.appendChild(img)
+
+          lastEnd = emote.end
+        }
+
+        const lastTextBit = document.createTextNode(
+          event.tags.emotes.length ? event.message.slice(++lastEnd, event.message.length) : 0
+        )
+
+        span.appendChild(lastTextBit)
+      }
+
+      const getMarkupFromEvent = async event => {
+        const badges = await getBadgesMarkup(event.tags.badges)
+        const badgesMarkup = badges.join("")
+
+        return `
+          <div>
+            <span>${badgesMarkup} ${event.tags.displayName}: </span>
+            ${createSpanFromEvent3(event)}
+          </div>
+        `
+      }
+
+    </script>
+  </body>
+</html>

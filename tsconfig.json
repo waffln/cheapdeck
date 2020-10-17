@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "strict": true,
+    "baseUrl": "./",
+    "types": [],
+    "noEmit": true,
+    "target": "ES2018",
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "noUnusedParameters": true,
+    "noImplicitThis": true,
+    "moduleResolution": "Node",
+    "module": "CommonJS",
+    "lib": ["ES6"]
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
+}

@@ -1,26 +1,12 @@
 {
-  "name": "cheapdeck",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
   "dependencies": {
-    "node-hid": "^1.2.0",
+    "@types/usb": "^1.5.2",
     "obs-websocket-js": "^3.1.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3",
     "usb": "^1.6.0"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/waffln/cheapdeck.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/waffln/cheapdeck/issues"
-  },
-  "homepage": "https://github.com/waffln/cheapdeck#readme"
+    "start": "ts-node src/main.ts"
+  }
 }

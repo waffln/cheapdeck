@@ -1,0 +1,32 @@
+{
+  "_raw": "@badge-info=subscriber/12;badges=broadcaster/1,subscriber/0;client-nonce=e806c2a32652b00aed04b1ea481d42fc;color=;display-name=FunctionGer;emotes=;flags=;id=feb31293-c094-4112-b760-386ad9f0be58;mod=0;room-id=414633476;subscriber=1;tmi-sent-ts=1595166642924;turbo=0;user-id=414633476;user-type= :functionger!functionger@functionger.tmi.twitch.tv PRIVMSG #functionger :awd",
+  "timestamp": "2020-07-19T13:50:42.924Z",
+  "command": "PRIVMSG",
+  "event": "PRIVMSG",
+  "channel": "#functionger",
+  "username": "functionger",
+  "isSelf": true,
+  "message": "awd",
+  "tags": {
+    "badgeInfo": "subscriber/12",
+    "badges": {
+      "broadcaster": "1",
+      "subscriber": "0"
+    },
+    "clientNonce": "e806c2a32652b00aed04b1ea481d42fc",
+    "color": "",
+    "displayName": "FunctionGer",
+    "emotes": [],
+    "flags": "",
+    "id": "feb31293-c094-4112-b760-386ad9f0be58",
+    "mod": "0",
+    "roomId": "414633476",
+    "subscriber": "1",
+    "tmiSentTs": "1595166642924",
+    "turbo": "0",
+    "userId": "414633476",
+    "userType": "",
+    "emoteSets": [],
+    "username": "functionger"
+  }
+}
