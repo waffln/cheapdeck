@@ -1,8 +1,10 @@
 import { InEndpoint } from "usb";
 import { rave, setScene, toggleAutoSceneSwitcher } from "./obs";
 import listen from "./listener"
+import m from "./mapping"
 
 import obsWS from 'obs-websocket-js'
+import getCheapdeck from "./getCheapdeck";
 
 const vendorId = 3163
 const productId = 720
@@ -10,42 +12,7 @@ const productId = 720
 const obs = new obsWS()
 
 ;(async () => {
-  let usb
-
-  try {
-    usb = await import("usb")
-  } catch (error) {
-    throw new Error(
-      `Error while loading usb module (${error.message}).
-      Are you running in WSL?`)
-  }
-
-  const cheapdeck = usb.findByIds(vendorId, productId)
-  
-  if (!cheapdeck) {
-    throw new Error("Could not find cheapdeck device. Is the cheapdeck plugged in? WSL?")
-  }
-
-  const m = {
-    NumLock: 83,
-    "/": 84,
-    "*": 85,
-    "-": 86,
-    7: 95,
-    8: 96,
-    9: 97,
-    "+": 87,
-    4: 92,
-    5: 93,
-    6: 94,
-    Backspace: 42,
-    1: 89,
-    2: 90,
-    3: 91,
-    Enter: 88,
-    0: 98,
-    ",": 99
-  }
+  const cheapdeck = await getCheapdeck(vendorId, productId)
 
   const actionMapping = {
     [m[0]]: () => toggleAutoSceneSwitcher(obs, true),
